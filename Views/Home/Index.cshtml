@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IQueryable<Project>
+
+<!--Peter (Max) Haines
+    Landing page with a little bootstrap to improve the aesthetic
+    that displays everything we have put in the database-->
+<div class="text-center">
+    <h1 class="display-4">Oido</h1>
+    <p>Let's see what books we have in stock!</p>
+</div>
+
+@foreach(var x in Model)
+{
+<div class="text-center">
+    <h1 style="color:darkviolet; text-decoration:wavy; ">@x.Title</h1>
+    <p><b>Author:</b> @x.AuthorLast, @x.AuthorFirst @x.AuthorMiddle</p>
+    <p><b>Publisher:</b> @x.Publisher</p>
+    <p><b>ISBN#:</b> @x.ISBN</p>
+    <p><b>Classification:</b> @x.Classification</p>
+    <p><b>Category:</b> @x.Category</p>
+    <p><b>Price:</b> $@x.Price</p>
+    <br />
+</div>
+}

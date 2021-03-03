@@ -14,19 +14,35 @@ namespace Assign5.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private iOidoRepository _repository;
-
+        public int PageSize = 5;
         public HomeController(ILogger<HomeController> logger, iOidoRepository repository)
         {
             _logger = logger;
             _repository = repository;
         }
 
-        public IActionResult Index()
+
+        public IActionResult Index(string category, int page = 1)
         {
             // check for required fields from Model
             if (ModelState.IsValid)
             {
-                return View(_repository.Projects);
+                //Dynamically builds numbers based on the items per page that we want
+                return View(new Assign5.Models.ViewModels.ProjectListViewModel
+                {
+                    Projects = _repository.Projects
+                    .Where(p => category == null || p.Category == category)
+                    .OrderBy(p => p.BookId)
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize),
+                    PageInfo = new Models.ViewModels.PageInfo
+                    {
+                        CurrentPage = page,
+                        itemsPer = PageSize,
+                        totalItems = category == null ? _repository.Projects.Count() :
+                            _repository.Projects.Where(x =>x.Category == category).Count()
+                    }
+                });
             }
 
             else

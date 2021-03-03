@@ -1,0 +1,21 @@
+﻿@model Project
+
+<div class="row alert alert-primary">
+    <div class="col-4 btn btn-secondary">
+        <h1 style="color:whitesmoke; text-decoration:wavy; ">@Model.Title</h1>
+    </div>
+    <div class="col-3">
+        <p><b>Author:</b> @Model.AuthorLast, @Model.AuthorFirst @Model.AuthorMiddle</p>
+        <p><b>Page Count:</b> @Model.Pages</p>
+        <p><b>Publisher:</b> @Model.Publisher</p>
+    </div>
+    <div class="col-3">
+        <p><b>ISBN#:</b> @Model.ISBN</p>
+        <p><b>Classification:</b> @Model.Classification</p>
+        <p><b>Category:</b> @Model.Category</p>
+    </div>
+    <div class="col-2">
+        <p><b>Price:</b> $@Model.Price</p>
+    </div>
+    <br />
+</div>

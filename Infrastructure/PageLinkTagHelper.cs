@@ -11,7 +11,7 @@ using Assign5.Models.ViewModels;
 
 //This helps us dynamically build the different web pages when there is more than a certain amount of items on a page
 
-namespace Water_PrepVideos.Infrastructure
+namespace Assign5.Infrastructure
 {
     [HtmlTargetElement("div", Attributes = "page-model")]
     public class PageLinkTagHelper : TagHelper
@@ -45,7 +45,7 @@ namespace Water_PrepVideos.Infrastructure
             for (int i = 1; i <= PageModel.totalPages; i++)
             {
                 TagBuilder tag = new TagBuilder("a");
-                PageUrlValues["page"] = i;
+                PageUrlValues["pageNum"] = i;
                 tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
 
                 if (PageClassesEnabled)

@@ -22,7 +22,7 @@ namespace Assign5.Controllers
         }
 
 
-        public IActionResult Index(string category, int page = 1)
+        public IActionResult Index(string category, int pageNum = 1)
         {
             // check for required fields from Model
             if (ModelState.IsValid)
@@ -33,11 +33,11 @@ namespace Assign5.Controllers
                     Projects = _repository.Projects
                     .Where(p => category == null || p.Category == category)
                     .OrderBy(p => p.BookId)
-                    .Skip((page - 1) * PageSize)
+                    .Skip((pageNum - 1) * PageSize)
                     .Take(PageSize),
                     PageInfo = new Models.ViewModels.PageInfo
                     {
-                        CurrentPage = page,
+                        CurrentPage = pageNum,
                         itemsPer = PageSize,
                         totalItems = category == null ? _repository.Projects.Count() :
                             _repository.Projects.Where(x =>x.Category == category).Count()

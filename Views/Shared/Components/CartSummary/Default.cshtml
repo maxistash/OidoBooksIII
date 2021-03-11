@@ -1,21 +1,5 @@
-﻿@*@model Cart
-
-    <div class="">
-        @if (Model.Lines.Count() > 0)
-        {
-            <small class="navbar-text">
-                <b>Your Cart:</b>
-                @Model.Lines.Sum(x => x.Quantity) item(s)
-                @Model.ComputeTotalSum().ToString("c")
-            </small>
-        }
-        <a class="btn btn-sm btn-secondary navbar-btn" asp-page="/Cart" name="returnUrl" value="@ViewContext.HttpContext.Request.PathandQuery()"
-           >
-        Cart!
-        </a>
-    </div>*@
-
-@model Cart
+﻿@model Cart
+@* Cart button redirected to the cart page*@
 <div class="">
     @if (Model.Lines.Count() > 0)
     {
@@ -25,7 +9,7 @@
             @Model.ComputeTotalSum().ToString("c")
         </small>
     }
-    <a class="btn btn-sm btn-secondary navbar-btn" asp-page="/Cart"
+    <a class="btn btn-sm btn-secondary navbar-btn" asp-page="/Donate"
        asp-route-returnurl="@ViewContext.HttpContext.Request.PathandQuery()">
         Cart!
     </a>
